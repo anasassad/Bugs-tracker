@@ -1,0 +1,29 @@
+<!-- Implementing the view list of the available Issues from our Mock Issues file -->
+<!-- Clartiy Library will help us to create a Nice Grid View -->
+<ng-container *ngIf="showReportIssue === false">
+  <button class="btn btn-primary" (click)="showReportIssue = true">
+    Add New Issue
+  </button>
+  <clr-datagrid [clrDgLoading]="loading">
+
+  <clr-dg-placeholder>Oups .. No Issues hs been found :)</clr-dg-placeholder>
+    <clr-dg-column [clrDgField]="'issueNo'">issueNo</clr-dg-column>
+    <clr-dg-column [clrDgField]="'title'">title</clr-dg-column>
+    <clr-dg-column [clrDgField]="'description'">description</clr-dg-column>
+    <clr-dg-column [clrDgField]="'priority'">priority</clr-dg-column>
+    <clr-dg-column [clrDgField]="'type'">type</clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let issue of issues">
+        <clr-dg-cell>{{issue.issueNo}}</clr-dg-cell>
+        <clr-dg-cell>{{issue.title}}</clr-dg-cell>
+        <clr-dg-cell>{{issue.description}}</clr-dg-cell>
+        <clr-dg-cell><span class="label" [class.label-danger]="issue.priority === 'high'">{{issue.priority}}</span></clr-dg-cell>
+        <clr-dg-cell>{{issue.type}}</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>{{issues.length}} items</clr-dg-footer>
+</clr-datagrid>
+</ng-container>
+
+<app-issue-report *ngIf="showReportIssue == true" (formClose)="onCloseReport()">
+</app-issue-report>

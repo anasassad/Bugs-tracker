@@ -1,0 +1,34 @@
+<!-- Impelementing The Issue reporting Form using Clarity Library -->
+<h3>Report an Issue</h3>
+<form clrForm *ngIf="issueForm" [formGroup]="issueForm" (ngSubmit)="report()">
+  <clr-input-container>
+      <label>Label</label>
+      <input clrInput formControlName="title">
+  </clr-input-container>
+  <clr-textarea-container>
+    <label>Description</label>
+    <br>
+    <textarea clrTextarea formControlName="description" rows="5"></textarea>
+  </clr-textarea-container>
+  <clr-radio-container clrInline>
+    <label>Priority</label>
+    <clr-radio-wrapper>
+        <input clrRadio type="radio" value="low" formControlName="priority">
+        <label>Low</label>
+    </clr-radio-wrapper>
+    <clr-radio-wrapper>
+      <input clrRadio type="radio" value="high" formControlName="priority">
+      <label>High</label>
+  </clr-radio-wrapper>
+  </clr-radio-container>
+  <clr-select-container>
+    <label>Type</label>
+    <select clrSelect formControlName="type">
+      <option value="Bug">Bug</option>
+      <option value="Documentation">Documentation</option>
+      <option value="Feature">Feature</option>
+    </select>
+  </clr-select-container>
+  <button class="btn btn-primary" type="submit">Report</button>
+  <button class="btn btn-outline-primary" type="button" (click)="formClose.emit()">Cancel</button>
+</form>
