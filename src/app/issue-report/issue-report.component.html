@@ -4,11 +4,26 @@
   <clr-input-container>
       <label>Label</label>
       <input clrInput formControlName="title">
+      <clr-control-error>
+        Title is required
+      </clr-control-error>
   </clr-input-container>
+  <div class="clr-row" *ngIf="suggestions.length">
+      <div class="clr-col-lg-2"></div>
+      <div class="clr-col-lg-6">
+        <clr-stack-view>
+              <clr-stack-header>Similar Issues</clr-stack-header>
+              <clr-stack-block *ngFor="let suggestion of suggestions">
+                  <clr-stack-label># {{suggestion.issueNo}} : {{suggestion.title}}</clr-stack-label>
+                  <clr-stack-content>{{ suggestion.description }}</clr-stack-content>
+              </clr-stack-block>
+        </clr-stack-view>
+      </div>
+  </div>
   <clr-textarea-container>
     <label>Description</label>
     <br>
-    <textarea clrTextarea formControlName="description" rows="5"></textarea>
+    <textarea clrTextarea formControlName="description"></textarea>
   </clr-textarea-container>
   <clr-radio-container clrInline>
     <label>Priority</label>
@@ -20,6 +35,9 @@
       <input clrRadio type="radio" value="high" formControlName="priority">
       <label>High</label>
   </clr-radio-wrapper>
+  <clr-control-error>
+    Priority is required
+  </clr-control-error>
   </clr-radio-container>
   <clr-select-container>
     <label>Type</label>
@@ -28,6 +46,9 @@
       <option value="Documentation">Documentation</option>
       <option value="Feature">Feature</option>
     </select>
+    <clr-control-error>
+      Type is required
+    </clr-control-error>
   </clr-select-container>
   <button class="btn btn-primary" type="submit">Report</button>
   <button class="btn btn-outline-primary" type="button" (click)="formClose.emit()">Cancel</button>

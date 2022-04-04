@@ -1,0 +1,13 @@
+<!-- Show the confirm-dialog if the issueNo is not empty -->
+<clr-modal [clrModalOpen]="issue !== null">
+    <h3 class="modal-title">Relove Issue # {{ issue?.issueNo }}</h3>
+    <div class="modal-body">
+      <p>Are sure do you want to close the Issue ?</p>
+      <br>
+      <span class="label label-warning">{{ issue?.type }}</span>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="disagree()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="agree()">Ok</button>
+    </div>
+</clr-modal>
