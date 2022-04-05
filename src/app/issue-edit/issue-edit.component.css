@@ -1,0 +1,14 @@
+button {
+  margin-top: 5%;
+}
+.clr-input, .clr-textarea {
+  width: 30%;
+ }
+form {
+  background-color: rgba(128, 128, 128, 0.100) ;
+  border-radius: 15px;
+  margin-top: 10px;
+  padding: 15px;
+  /*inset property drop the shadow inside the box*/
+  box-shadow: 0px 0px 1000px rgba(70, 98, 192, 0.205) inset;
+}

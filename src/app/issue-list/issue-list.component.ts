@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
-import { Issue } from '../issue';
-import { IssuesService } from '../issues.service';
+import { Issue } from '../issue'
+import { IssuesService } from '../issues.service'
 
 @Component({
   selector: 'app-issue-list',
@@ -12,7 +12,8 @@ export class IssueListComponent implements OnInit {
 
   issues: Issue[] = []
   showReportIssue = false
-  selectedIssue : Issue | null = null ;
+  editIssue : Issue | null = null ;
+  selectedIssue : Issue | null = null
 
   constructor(private issuesService: IssuesService) { }
 
@@ -37,6 +38,11 @@ export class IssueListComponent implements OnInit {
   onCloseReport(){
 
     this.showReportIssue = false
+    this.loadIssues()
+  }
+
+  onCloseEditReport(){
+    this.editIssue = null
     this.loadIssues()
   }
 

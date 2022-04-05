@@ -1,6 +1,6 @@
-<!-- Impelementing The Issue reporting Form using Clarity Library -->
-<h3>Report an Issue</h3>
-<form clrForm *ngIf="issueForm" [formGroup]="issueForm" (ngSubmit)="report()">
+<!-- Impelementing The Issue Editing Form using Clarity Library -->
+<h3>Edit an Issue</h3>
+<form clrForm *ngIf="issueForm" [formGroup]="issueForm" (ngSubmit)="editReport()">
   <clr-input-container>
       <label>Label</label>
       <input clrInput formControlName="title">
@@ -8,18 +8,6 @@
         Title is required
       </clr-control-error>
   </clr-input-container>
-  <div class="clr-row" *ngIf="suggestions.length"> <!--  (Row)[[2 empty columns][6 columns]] -->
-      <div class="clr-col-lg-2"></div>
-      <div class="clr-col-lg-6">
-        <clr-stack-view>
-              <clr-stack-header>Similar Issues</clr-stack-header>
-              <clr-stack-block *ngFor="let suggestion of suggestions">
-                  <clr-stack-label># {{suggestion.issueNo}} : {{suggestion.title}}</clr-stack-label>
-                  <clr-stack-content>{{ suggestion.description }}</clr-stack-content>
-              </clr-stack-block>
-        </clr-stack-view>
-      </div>
-  </div>
   <clr-textarea-container>
     <label>Description</label>
     <br>
@@ -50,6 +38,6 @@
       Type is required
     </clr-control-error>
   </clr-select-container>
-  <button class="btn btn-primary" type="submit">Report</button>
-  <button class="btn btn-outline-primary" type="button" (click)="formClose.emit()">Cancel</button>
+  <button class="btn btn-primary" type="submit">Edit</button>
+  <button class="btn btn-outline-primary" type="button" (click)="editFormClose.emit()">Cancel</button>
 </form>

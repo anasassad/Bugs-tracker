@@ -1,6 +1,6 @@
 <!-- Implementing the view list of the available Issues from our Mock Issues file -->
 <!-- Clartiy Library will help us to create a Nice Grid View -->
-<ng-container *ngIf="showReportIssue === false">
+<ng-container *ngIf="showReportIssue === false && !editIssue">
   <button class="btn btn-primary" (click)="showReportIssue = true">
     Add New Issue
   </button>
@@ -17,6 +17,7 @@
         <clr-dg-action-overflow>
           <!-- Make an Assignement action when reslove button is clicked -->
           <button class="action-item" (click)="selectedIssue = issue">Resolve</button>
+          <button class="action-item" (click)="editIssue = issue">Edit</button>
         </clr-dg-action-overflow>
         <clr-dg-cell>{{issue.issueNo}}</clr-dg-cell>
         <clr-dg-cell>{{issue.title}}</clr-dg-cell>
@@ -31,5 +32,6 @@
 
 <app-issue-report *ngIf="showReportIssue == true" (formClose)="onCloseReport()">
 </app-issue-report>
+<app-issue-edit *ngIf="editIssue" [issue]="editIssue" (editFormClose)="onCloseEditReport()"></app-issue-edit>
 
 <app-confirm-dialog *ngIf="selectedIssue" [issue]="selectedIssue" (confirm)="onConfirm($event)"></app-confirm-dialog>

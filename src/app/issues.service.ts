@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Issue } from './issue';
-import { issues } from '../assets/mock-issues';
+import { Injectable } from '@angular/core'
+import { Issue } from './issue'
+import { issues } from '../assets/mock-issues'
 
 @Injectable({
   providedIn: 'root'
 })
 export class IssuesService {
-  private issues: Issue[] = issues ;
+  private issues: Issue[] = issues
   constructor() { }
 
   getPendingIssues(): Issue[] {
@@ -14,12 +14,25 @@ export class IssuesService {
     return this.issues.filter((issue) => {
       return !issue.completed
     }
-      );
+      )
   }
 
   createIssue(issue: Issue){
-      issue.issueNo = this.issues.length + 1 ;
-      this.issues.push(issue);
+      issue.issueNo = this.issues.length + 1
+      this.issues.push(issue)
+  }
+
+  editIssue(issueNo:number | undefined,issue: Issue){
+
+      const existingIssue = issues.find(i => i.issueNo === issueNo)
+
+      if(existingIssue){
+          const index = issues.indexOf(existingIssue)
+          this.issues[index] = {
+            ...existingIssue,
+            ...issue
+          }
+      }
   }
 
   completedIssue(issue:Issue){
@@ -27,19 +40,19 @@ export class IssuesService {
      const selectedIssue : Issue = {
        ...issue ,
        completed : new Date()
-     };
+     }
 
      //Find the matched Issue by it index and return index of this Issue Object
-     const index = issues.findIndex( i => i === issue);
+     const index = issues.findIndex( i => i === issue)
 
      //Set as Completed in the current issues array
-     issues[index] = selectedIssue ;
+     issues[index] = selectedIssue
   }
 
   getSuggestions(title : string): Issue[] {
         if(title.length > 3){
-          return this.issues.filter(issue=> issue.title.indexOf(title) !== -1);
+          return this.issues.filter(issue=> issue.title.indexOf(title) !== -1)
         }
-        return [];
+        return []
   }
 }
