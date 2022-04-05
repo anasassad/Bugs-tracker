@@ -10,7 +10,7 @@ export class IssuesService {
   constructor() { }
 
   getPendingIssues(): Issue[] {
-    //Back In few Seconds
+    
     return this.issues.filter((issue) => {
       return !issue.completed
     }
