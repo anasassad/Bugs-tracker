@@ -4,5 +4,5 @@ export interface Issue {
   description : string ;
   priority : 'low' | 'high' ;
   type : 'Bug' | 'Documentation' | 'Feature';
-  completed? : boolean ;
+  completed? : Date ;
 }
