@@ -1,0 +1,15 @@
+<clr-modal [clrModalOpen]="issueNo != null" [clrModalClosable]="false">
+  <!-- The head title section of our Clarity Modal -->
+  <h3 class="modal-title">
+    Resolve Issue # {{ issueNo }}
+  </h3>
+  <!-- The body content of our Clarity Modal -->
+  <div class="modal-body">
+    <p>Are you sure you want to close the issue ?</p>
+  </div>
+  <!-- The footer section of our Clarity Modal -->
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="agree()">Yes, continue</button>
+    <button type="button" class="btn btn-outline" (click)="disagree()">Cancel</button>
+  </div>
+</clr-modal>
