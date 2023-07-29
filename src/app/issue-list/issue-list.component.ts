@@ -12,18 +12,25 @@ export class IssueListComponent implements OnInit {
 
   issues: Issue[] = []
   showReportIssue = false
-  loading = true
+  selectedIssue : Issue | null = null
 
   constructor(private issuesService: IssuesService) { }
 
   ngOnInit():  void {
     this.loadIssues()
-    setTimeout(() => this.loading = false ,2000)
 
   }
 
   private loadIssues() {
      this.issues = this.issuesService.getPendingIssues()
+  }
+
+  onConfirm(confirmed : boolean){
+    if(confirmed && this.selectedIssue){
+      this.issuesService.completeIssue(this.selectedIssue)
+      this.loadIssues()
+    }
+    this.selectedIssue = null
   }
 
   onCloseReport(){
